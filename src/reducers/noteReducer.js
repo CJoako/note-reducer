@@ -37,6 +37,7 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     createNote(state, action) {
+      console.log("Reducer called with action:", action);
       const content = action.payload;
       state.push({
         content,
@@ -51,6 +52,9 @@ const noteSlice = createSlice({
         ...noteToChange,
         important: !noteToChange.important,
       };
+
+      console.log(JSON.parse(JSON.stringify(state)));
+
       return state.map((note) => (note.id !== id ? note : changedNote));
     },
   },
